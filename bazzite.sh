@@ -191,7 +191,7 @@ function debloat() {
 
 for PKG in "${PKGS[@]}"; do
     echo "REMOVING: ${PKG}"
-    sudo flatpak remove "$PKG"
+    sudo flatpak remove "$PKG" -y
 done
 	echo
 	check_exit_status
