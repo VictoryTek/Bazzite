@@ -10,7 +10,7 @@ Download Bazzite from https://bazzite.gg/ and put it on a USB drive with Etcher,
 
 ```
 git clone https://github.com/VictoryTek/Bazzite
-cd Nobara
+cd Bazzite
 chmod +x bazzite.sh
 
 ./bazzite.sh
