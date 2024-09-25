@@ -98,7 +98,7 @@ echo -e "+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++"
 
 	   echo "You replied $input, you are ready to start"
 	   echo
-	   echo "Starting VictoryNobara install script."
+	   echo "Starting VictoryBazzite install script."
 	   echo
 	   sleep 3s
 
