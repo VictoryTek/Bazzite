@@ -292,6 +292,7 @@ done
 	flatpak install flathub org.kde.gwenview -y
 	flatpak install flathub org.freedesktop.Piper -y
 	flatpak install flathub org.wezfurlong.wezterm -y
+ 	flatpak install flathub io.github.zen_browser.zen -y
 	sleep 3s
 
 }
