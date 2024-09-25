@@ -128,8 +128,8 @@ function hostname() {
 then
     useradd -m -G wheel,libvirt -s /bin/bash $username 
 	passwd $username
-	cp -R /root/VictoryNobara /home/$username/
-    chown -R $username: /home/$username/VictoryNobara
+	cp -R /root/Bazzite /home/$username/
+    chown -R $username: /home/$username/Bazzite
 	read -p "Please name your computer:" nameofmachine
 	echo $nameofmachine > /etc/hostname
 else
@@ -183,7 +183,7 @@ function debloat() {
 	sleep 6s
 	PKGS=(
 	'org.gnome.clocks'
-	'org.gnome.weather'
+	'org.gnome.Weather'
 	'io.github.nokse22.Exhibit'
 	
 
@@ -210,7 +210,6 @@ sleep 6s
 PKGS=(
 'autofs'
 'autojump'
-'bibata-cursor-themes'
 'breeze-cursor-theme'
 'bpytop'
 #'chrome-gnome-shell'
@@ -234,7 +233,6 @@ PKGS=(
 'timeshift'
 'tldr'
 'trash-cli'
-'unrar'
 #'ufw'
 'variety'
 #'@virtualization' 
@@ -263,14 +261,6 @@ done
 	curl -sS https://starship.rs/install.sh | sh
 	sleep 3s
 
-	# Sound Codecs
-	sudo dnf install gstreamer1-plugins-{bad-\*,good-\*,base} gstreamer1-plugin-openh264 gstreamer1-libav --exclude=gstreamer1-plugins-bad-free-devel
-	echo
-	sudo dnf install lame\* --exclude=lame-devel
-	echo
-	sudo dnf group upgrade --with-optional Multimedia
-	sleep 3s
-	
 	#Appreence
 	cd $HOME/Bazzite/
 	git clone https://github.com/daniruiz/flat-remix
@@ -378,14 +368,14 @@ function configs() {
 #	gsettings set org.gnome.desktop.interface gtk-theme "Flat-Remix-GTK-Blue-Dark"
 	gsettings set org.gnome.desktop.interface icon-theme "kora"
 	echo
-	gsettings set org.gnome.shell favorite-apps "['brave-browser.desktop', 'firefox.desktop', 'org.gnome.Nautilus.desktop', 'terminator.desktop', 'nobara-sync.desktop', 'com.simplenote.Simplenote.desktop', 'virtualbox.desktop', 'com.vscodium.codium.desktop', 'onboard.desktop']"
+	gsettings set org.gnome.shell favorite-apps "['brave-browser.desktop', 'firefox.desktop', 'org.gnome.Nautilus.desktop', 'terminator.desktop', 'Bazzite-sync.desktop', 'com.simplenote.Simplenote.desktop', 'virtualbox.desktop', 'com.vscodium.codium.desktop', 'onboard.desktop']"
 	gsettings set org.gnome.desktop.wm.preferences button-layout ":minimize,maximize,close"
 	gsettings set org.gnome.desktop.interface clock-format '12h'   
 	gsettings set org.gnome.desktop.interface cursor-theme 'Bibata-Modern-Classic'
 	echo
 	gsettings set org.fedorahosted.background-logo-extension "True"
-	gsettings set org.fedorahosted.background-logo-extension.logo-file "/usr/share/nobara-logos/nobara_lightbackground.svg"
-	gsettings set org.fedorahosted.background-logo-extension.logo-file-dark "/usr/share/nobara-logos/nobara_darkbackground.svg"
+	gsettings set org.fedorahosted.background-logo-extension.logo-file "/usr/share/bazzite-logos/bazzite_lightbackground.svg"
+	gsettings set org.fedorahosted.background-logo-extension.logo-file-dark "/usr/share/bazzite-logos/bazzite_darkbackground.svg"
 
 	check_exit_status
 }
