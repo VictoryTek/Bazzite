@@ -376,11 +376,7 @@ function restart() {
 		echo "---------------------------------------"
 		echo
 		
-		echo Restart 
-		echo or 
-		echo restart gnome shell 
-		echo & 
-		echo run script 2, victory-finish.sh
+		echo Restarting
 		echo
 		check_exit_status
 		
