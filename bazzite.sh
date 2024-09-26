@@ -230,7 +230,7 @@ done
 # Installing Appearance
 function install_appearance() {
 	# Starship
-	curl -sS https://starship.rs/install.sh | sh
+	curl -sS https://starship.rs/install.sh | sh -y
 	sleep 3s
 
 	# Icons & Cursor
