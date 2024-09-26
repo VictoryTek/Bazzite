@@ -351,7 +351,8 @@ function configs() {
 #	gsettings set org.gnome.desktop.interface gtk-theme "Flat-Remix-GTK-Blue-Dark"
 	gsettings set org.gnome.desktop.interface icon-theme "kora"
 	echo
-	gsettings set org.gnome.shell favorite-apps "['brave-browser.desktop', 'firefox.desktop', 'org.gnome.Nautilus.desktop', 'terminator.desktop', 'Bazzite-sync.desktop', 'com.simplenote.Simplenote.desktop', 'virtualbox.desktop', 'com.vscodium.codium.desktop', 'onboard.desktop']"
+	gsettings set org.gnome.shell favorite-apps "['io.github.zen_browser.zen.desktop', 'com.brave.Browser.desktop', 'org.gnome.Nautilus.desktop', 'org.wezfurlong.wezterm.desktop', 'system-update.desktop', 'com.simplenote.Simplenote.desktop', 'org.gnome.Boxes.desktop', 'com.vscodium.codium.desktop']"
+#	gsettings set org.gnome.shell favorite-apps "['brave-browser.desktop', 'firefox.desktop', 'org.gnome.Nautilus.desktop', 'terminator.desktop', 'Bazzite-sync.desktop', 'com.simplenote.Simplenote.desktop', 'virtualbox.desktop', 'com.vscodium.codium.desktop', 'onboard.desktop']"
 	gsettings set org.gnome.desktop.wm.preferences button-layout ":minimize,maximize,close"
 	gsettings set org.gnome.desktop.interface clock-format '12h'   
 	gsettings set org.gnome.desktop.interface cursor-theme 'Bibata-Modern-Classic'
