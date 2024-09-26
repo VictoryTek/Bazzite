@@ -225,6 +225,10 @@ for PKG in "${PKGS[@]}"; do
     rpm-ostree install "$PKG"
 done
 
+	# Tailscale
+	curl -fsSL https://tailscale.com/install.sh | sh
+	sleep 3s
+
 }
 
 # Installing Appearance
