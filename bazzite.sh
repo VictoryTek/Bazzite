@@ -10,7 +10,7 @@
 #     \____/   |___||____|  |__|    \_____ / |__|       |_|         #
 #                                                                   #
 # Victory Linux Install script                                      #
-# https://github.com/VictoryLinux                                   #
+# https://github.com/VictoryTek                                     #
 #####################################################################
 
 
@@ -139,25 +139,6 @@ fi
 	check_exit_status
 }
 
-# Add to DNF config
-function mirror() {
-
-	echo "###########################"
-	echo "|         Mirrors         |"
-	echo "###########################"
-	echo
-	sleep 6s
-	# Set to Fastest Mirror
-	#sudo sed -i -e '$afastestmirror=True' /etc/dnf/dnf.conf 
-	# Add parallel downloading
-	sudo sed -i -e '$amax_parallel_downloads=10' /etc/dnf/dnf.conf
-	# Add Y as default
-	sudo sed -i -e '$adefaultyes=True' /etc/dnf/dnf.conf
-	echo
-	check_exit_status
-	
-}
-
 # Updating 
 function update() {
 
@@ -167,7 +148,7 @@ function update() {
 	echo
 	sleep 6s
 	echo	
-	sudo dnf update -y;
+	topgrade;
 	echo
 	check_exit_status
 }
@@ -198,7 +179,7 @@ done
 }
 
 # Installing Packages
-function install() {
+function install_pkgs() {
 
 	echo "###############################"
 	echo "|     Installing Packages.    |"
@@ -212,7 +193,6 @@ PKGS=(
 'autojump'
 'breeze-cursor-theme'
 'bpytop'
-#'chrome-gnome-shell'
 #'@development-tools'
 'dialog'
 'elfutils-libelf-devel'
@@ -222,10 +202,8 @@ PKGS=(
 'meson'
 'mono-complete'
 'ncdu'
-#'onboard'
 'powerline-fonts'
 'progress'
-#'remmina'
 'snapper'
 'swtpm'
 #'terminator'
@@ -233,20 +211,11 @@ PKGS=(
 'timeshift'
 'tldr'
 'trash-cli'
-#'ufw'
 'variety'
 #'@virtualization' 
 'wine-mono'
-#'youtube-dl'
-#'zlib-devel'
 'gnome-shell-extension-dash-to-dock'
-#'gnome-shell-extension-caffeine'
-#'gnome-shell-extension-vitals-git'
-#'gnome-shell-extension-gnome-ui-tune'
-#'gnome-shell-extension-impatience-git'
-#'gnome-shell-extension-no-annoyance-git'
-#'gnome-shell-extension-tiling-assistant'
-#'gnome-shell-extension-extension-list'
+
 
 
 )
@@ -256,43 +225,48 @@ for PKG in "${PKGS[@]}"; do
     rpm-ostree install "$PKG"
 done
 
+}
 
+# Installing Appearance
+function install_appearance() {
 	# Starship
 	curl -sS https://starship.rs/install.sh | sh
 	sleep 3s
 
-	#Appreence
+	# Icons & Cursor
 	cd $HOME/Bazzite/
 	git clone https://github.com/daniruiz/flat-remix
 	git clone https://github.com/daniruiz/flat-remix-gtk
 	git clone https://github.com/bikass/kora.git
-	sudo dnf copr enable peterwu/rendezvous
-	sudo dnf install bibata-cursor-themes
+	wget https://github.com/ful1e5/Bibata_Cursor/releases/download/v2.0.7/Bibata-Modern-Classic.tar.xz
+	tar -xvf Bibata-Modern-Classic.tar.xz
 	sleep 3s
+}
 
+# Installing Flatpaks
+function install_flatpaks() {
 	# Flatpaks
-	flatpak install flathub com.system76.Popsicle -y
-    flatpak install flathub com.bitwarden.desktop -y
-	#flatpak install flathub com.usebottles.bottles -y
-	flatpak install flathub com.brave.Browser -y
-	#flatpak install flathub org.gnome.Boxes -y
-	#flatpak install flathub nl.hjdskes.gcolor3 -y
-	flatpak install flathub io.github.shiftey.Desktop -y
-	flatpak install flathub com.discordapp.Discord -y
-	flatpak install flathub org.prismlauncher.PrismLauncher -y
-	flatpak install flathub com.simplenote.Simplenote -y
-	#flatpak install flathub net.nokyan.Resources -y
-    flatpak install flathub com.vscodium.codium -y
-	flatpak install flathub dev.deedles.Trayscale -y
-	#flatpak install flathub com.mattjakeman.ExtensionManager -y
-	flatpak install flathub io.github.celluloid_player.Celluloid -y
-	flatpak install flathub ca.desrt.dconf-editor -y
-	flatpak install flathub org.kde.filelight -y
-	flatpak install flathub org.gimp.GIMP -y
-	flatpak install flathub org.kde.gwenview -y
-	flatpak install flathub org.freedesktop.Piper -y
-	flatpak install flathub org.wezfurlong.wezterm -y
- 	flatpak install flathub io.github.zen_browser.zen -y
+	flatpak install --system flathub com.system76.Popsicle -y
+    flatpak install --system flathub com.bitwarden.desktop -y
+	#flatpak install --system flathub com.usebottles.bottles -y
+	flatpak install --system flathub com.brave.Browser -y
+	#flatpak install --system flathub org.gnome.Boxes -y
+	#flatpak install --system flathub nl.hjdskes.gcolor3 -y
+	flatpak install --system flathub io.github.shiftey.Desktop -y
+	flatpak install --system flathub com.discordapp.Discord -y
+	flatpak install --system flathub org.prismlauncher.PrismLauncher -y
+	flatpak install --system flathub com.simplenote.Simplenote -y
+	#flatpak install --system flathub net.nokyan.Resources -y
+    flatpak install --system flathub com.vscodium.codium -y
+	flatpak install --system flathub dev.deedles.Trayscale -y
+	#flatpak install --system flathub com.mattjakeman.ExtensionManager -y
+	flatpak install --system flathub io.github.celluloid_player.Celluloid -y
+	flatpak install --system flathub ca.desrt.dconf-editor -y
+	flatpak install --system flathub org.kde.filelight -y
+	flatpak install --system flathub org.gimp.GIMP -y
+	flatpak install --system flathub org.kde.gwenview -y
+	flatpak install --system flathub org.freedesktop.Piper -y
+	flatpak install --system flathub org.wezfurlong.wezterm -y
 	sleep 3s
 
 }
@@ -301,11 +275,8 @@ done
 function extensions() {
 	#Extension-list
 	cd ~
-#	git clone https://github.com/tuberry/extension-list.git && cd extension-list
-#	make && make install
 	git clone --recurse-submodules https://github.com/tuberry/extension-list.git && cd extension-list
 	meson setup build && meson install -C build
-	# meson setup build -Dtarget=system && meson install -C build # system-wide, default --prefix=/usr/local
 	sleep 3s
 
 	#Tray-Icons-Reloaded
@@ -323,7 +294,7 @@ function extensions() {
 }
 
 # Put the wallpaper
-function backgrounds() {
+function wallpaper() {
 
 	echo "#########################################"
 	echo "|     Setting up Favorite Wallpaper.    |"
@@ -331,7 +302,7 @@ function backgrounds() {
 	echo
 	sleep 6s
 	cd ~/
-    git clone https://gitlab.com/dwt1/wallpapers.git
+    git clone https://github.com/VictoryTek/Wallpaper.git
 
 	check_exit_status
 }
@@ -356,16 +327,19 @@ function configs() {
     mv $HOME/.config/face $HOME/.config/.face
     mv $HOME/.config/.face $HOME
 	echo
+	cd $HOME/
+	mkdir .icons
 	cd $HOME/Bazzite/
-	sudo mv kora/kora/ /usr/share/icons/
-	sudo mv kora/kora-light/ /usr/share/icons/
-	sudo mv kora/kora-light-panel/ /usr/share/icons/
-	sudo mv kora/kora-pgrey/ /usr/share/icons/
+	sudo mv kora/kora/ $HOME/.icons/
+	sudo mv kora/kora-light/ $HOME/.icons/
+	sudo mv kora/kora-light-panel/ $HOME/.icons/
+	sudo mv kora/kora-pgrey/ $HOME/.icons/
 	#mkdir -p ~/.icons && mkdir -p ~/.themes
 #	cp -r flat-remix/Flat-Remix* ~/.icons/ && cp -r flat-remix-gtk/themes/Flat-Remix* ~/.themes/
-	sudo mv flat-remix/Flat-Remix* /usr/share/icons/ 
-	sudo mv flat-remix-gtk/themes/Flat-Remix* /usr/share/themes/
+	sudo mv flat-remix/Flat-Remix* $HOME/.icons/ 
+	sudo mv flat-remix-gtk/themes/Flat-Remix* $HOME/.icons/
 	rm -rf ~/flat-remix flat-remix-gtk
+	rm -rf ~/
 #	gsettings set org.gnome.desktop.interface gtk-theme "Flat-Remix-GTK-Blue-Dark"
 	gsettings set org.gnome.desktop.interface icon-theme "kora"
 	echo
@@ -374,9 +348,9 @@ function configs() {
 	gsettings set org.gnome.desktop.interface clock-format '12h'   
 	gsettings set org.gnome.desktop.interface cursor-theme 'Bibata-Modern-Classic'
 	echo
-	gsettings set org.fedorahosted.background-logo-extension "True"
-	gsettings set org.fedorahosted.background-logo-extension.logo-file "/usr/share/bazzite-logos/bazzite_lightbackground.svg"
-	gsettings set org.fedorahosted.background-logo-extension.logo-file-dark "/usr/share/bazzite-logos/bazzite_darkbackground.svg"
+	#gsettings set org.fedorahosted.background-logo-extension "True"
+	#gsettings set org.fedorahosted.background-logo-extension.logo-file "/usr/share/bazzite-logos/bazzite_lightbackground.svg"
+	#gsettings set org.fedorahosted.background-logo-extension.logo-file-dark "/usr/share/bazzite-logos/bazzite_darkbackground.svg"
 
 	check_exit_status
 }
@@ -418,11 +392,12 @@ function restart() {
 
 greeting
 hostname
-#mirror
-#update
-debloat
-install
+update
+#debloat
+#install_pkgs
+install_appearance
+install_flatpaks
 #extensions
-#backgrounds
+#wallpaper
 configs
 restart
