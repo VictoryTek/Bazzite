@@ -338,8 +338,7 @@ function configs() {
 #	cp -r flat-remix/Flat-Remix* ~/.icons/ && cp -r flat-remix-gtk/themes/Flat-Remix* ~/.themes/
 	sudo mv flat-remix/Flat-Remix* $HOME/.icons/ 
 	sudo mv flat-remix-gtk/themes/Flat-Remix* $HOME/.icons/
-	rm -rf ~/flat-remix flat-remix-gtk
-	rm -rf ~/
+	sudo rm -rf ~/flat-remix flat-remix-gtk
 #	gsettings set org.gnome.desktop.interface gtk-theme "Flat-Remix-GTK-Blue-Dark"
 	gsettings set org.gnome.desktop.interface icon-theme "kora"
 	echo
