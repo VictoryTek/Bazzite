@@ -374,7 +374,7 @@ function restart() {
 
             if [ "$answer" == "y" ]
             then
-            	cecho
+            	
 		echo "---------------------------------------"
 		echo "----        VictoryScript          ----"
 		echo "----     has been installed!       ----"
