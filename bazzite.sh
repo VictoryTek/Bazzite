@@ -69,10 +69,10 @@ echo -e "      \____/   |___||____|  |__|    \_____ / |__|       |_|      "
 echo -e "                                                                 "
 echo -e "-----------------------------------------------------------------"
 echo -e "    █████╗     █████╗  ██████╗ ██████╗██████╗ ██████╗  █████╗    "
-echo -e "  ██╔════██  ██     ██╗██   ██╗  ██   ██   ██╗  ██╔═╝██╔════██╗  "
-echo -e "   ████╗    ██         ██   ██║  ██   ██   ██║  ██║   ████╗      "
-echo -e "      ████╗ ██         ██████╔╝  ██   ██████╔╝  ██║      ████╗   "
-echo -e "  ██     ██╗ ██     ██║██║  ██║  ██   ██╔═══╝   ██║  ██     ██╗  "
+echo -e "  ██╔════██╗ ██╔════██╗██╔══██╗  ██╔═╝██╔══██╗  ██╔═╝██╔════██╗  "
+echo -e "   ████╗    ██╔╝       ██║  ██║  ██║  ██║  ██║  ██║   ████╗      "
+echo -e "      ████╗ ██║        ██████╔╝  ██║  ██████╔╝  ██║      ████╗   "
+echo -e "  ██╗    ██╗ ██╗    ██║██║  ██║  ██║  ██╔═══╝   ██║  ██╗    ██╗  "
 echo -e "    █████╔═╝   █████╔═╝██║  ██║██████╗██║       ██║    █████╔═╝  "
 echo -e "    ╚════╝     ╚════╝  ╚═╝  ╚═╝╚═════╝╚═╝       ╚═╝    ╚════╝    "
 echo -e "-----------------------------------------------------------------"
@@ -331,10 +331,10 @@ function configs() {
 	cd $HOME/
 	mkdir .icons
 	cd $HOME/Bazzite/
-	sudo mv kora/kora/ $HOME/.icons/
-	sudo mv kora/kora-light/ $HOME/.icons/
-	sudo mv kora/kora-light-panel/ $HOME/.icons/
-	sudo mv kora/kora-pgrey/ $HOME/.icons/
+	sudo mv kora/kora $HOME/.icons/
+	sudo mv kora/kora-light $HOME/.icons/
+	sudo mv kora/kora-light-panel $HOME/.icons/
+	sudo mv kora/kora-pgrey $HOME/.icons/
 	#mkdir -p ~/.icons && mkdir -p ~/.themes
 #	cp -r flat-remix/Flat-Remix* ~/.icons/ && cp -r flat-remix-gtk/themes/Flat-Remix* ~/.themes/
 	sudo mv flat-remix/Flat-Remix* $HOME/.icons/ 
