@@ -331,15 +331,23 @@ function configs() {
 	cd $HOME/
 	mkdir .icons
 	cd $HOME/Bazzite/
-	sudo mv kora/kora $HOME/.icons/
-	sudo mv kora/kora-light $HOME/.icons/
-	sudo mv kora/kora-light-panel $HOME/.icons/
-	sudo mv kora/kora-pgrey $HOME/.icons/
-	#mkdir -p ~/.icons && mkdir -p ~/.themes
-#	cp -r flat-remix/Flat-Remix* ~/.icons/ && cp -r flat-remix-gtk/themes/Flat-Remix* ~/.themes/
-	sudo mv flat-remix/Flat-Remix* $HOME/.icons/ 
-	sudo mv flat-remix-gtk/themes/Flat-Remix* $HOME/.icons/
-	sudo rm -rf ~/flat-remix flat-remix-gtk
+# TEST
+	sudo cp -r kora/kora* $HOME/.icons/
+	sudo cp -r kora/kora-light* $HOME/.icons/
+	sudo cp -r kora/kora-light-panel* $HOME/.icons/
+	sudo cp -r kora/kora-pgrey* $HOME/.icons/
+	sudo cp -r flat-remix/Flat-Remix* $HOME/.icons/ 
+	sudo cp -r flat-remix-gtk/themes/Flat-Remix* $HOME/.icons/
+#	sudo rm -rf ~/flat-remix flat-remix-gtk
+# TEST
+#	sudo mv kora/kora $HOME/.icons/
+#	sudo mv kora/kora-light $HOME/.icons/
+#	sudo mv kora/kora-light-panel $HOME/.icons/
+#	sudo mv kora/kora-pgrey $HOME/.icons/
+
+#	sudo mv flat-remix/Flat-Remix* $HOME/.icons/ 
+#	sudo mv flat-remix-gtk/themes/Flat-Remix* $HOME/.icons/
+#	sudo rm -rf ~/flat-remix flat-remix-gtk
 #	gsettings set org.gnome.desktop.interface gtk-theme "Flat-Remix-GTK-Blue-Dark"
 	gsettings set org.gnome.desktop.interface icon-theme "kora"
 	echo
