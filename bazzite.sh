@@ -188,41 +188,32 @@ function install_pkgs() {
 
 sleep 6s
 
+
+
 PKGS=(
-'autofs'
 'autojump'
-'breeze-cursor-theme'
-'bpytop'
-#'@development-tools'
+'breeze-hacked-cursor-theme'
 'dialog'
-'elfutils-libelf-devel'
-'gparted' # partition management
-'kernel-devel'
-'kmag'
 'meson'
-'mono-complete'
 'ncdu'
 'powerline-fonts'
 'progress'
 'snapper'
 'swtpm'
-#'terminator'
-'terminus-fonts'
+'terminus_font'
 'timeshift'
 'tldr'
 'trash-cli'
 'variety'
-#'@virtualization' 
 'wine-mono'
-'gnome-shell-extension-dash-to-dock'
-
+'gnomeExtensions.dash-to-dock'
 
 
 )
 
 for PKG in "${PKGS[@]}"; do
     echo "INSTALLING: ${PKG}"
-    rpm-ostree install "$PKG"
+    nix-env -f "<nixpkgs>" -iA "$PKG"
 done
 
 	# Tailscale
