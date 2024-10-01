@@ -148,7 +148,7 @@ function update() {
 	echo
 	sleep 6s
 	echo	
-	topgrade;
+	ujust upgrade;
 	echo
 	check_exit_status
 }
