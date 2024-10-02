@@ -116,6 +116,66 @@ fi
 	check_exit_status
 }
 
+function nix() {
+#	sleep 5s
+	echo "This script installs some packages using Nix Package Manager"
+	echo "Please run the following script manually to install Nix, reboot & run this script again."
+	echo "curl --proto '=https' --tlsv1.2 -sSf -L https://install.determinate.systems/nix | sh -s -- install"
+	echo "HAVE YOU RUN THE SCRIPT TO INSTALL NIX? [y,n]"
+	read input
+
+	# did we get an input value?
+	if [ "$input" == "" ]; then
+
+	   echo "Nothing was entered by the user"
+
+	# was it a y or a yes?
+	elif [[ "$input" == "y" ]] || [[ "$input" == "yes" ]]; then
+
+	   echo "You replied $input, you have run the script to install Nix"
+	   echo
+	   sleep 3s
+
+	# treat anything else as a negative response
+	else
+
+	   echo "You replied $input, Please run the following script manually to install Nix, reboot & run this script again. "
+	   echo
+	   exit 1
+
+fi
+
+	echo "DO YOU NEED TO REBOOT? [y,n]"
+	read input
+
+	# did we get an input value?
+	if [ "$input" == "" ]; then
+
+		echo "Nothing was entered by the user"
+	    
+	# was it a y or a yes?
+	elif [[ "$input" == "y" ]] || [[ "$input" == "yes" ]]; then
+
+	   echo Restarting
+		echo
+		echo "Restarting in 15s"
+		sleep 15s
+        shutdown -r now
+
+	# treat anything else as a negative response
+	else
+
+	   echo "You replied $input, So you have installed Nix manually, so we will move forward with the setup script."
+	   echo
+	   sleep 3s
+
+fi
+
+	echo
+	
+	check_exit_status
+}
+
 # Set the Hostname
 function hostname() {
 	
@@ -188,8 +248,6 @@ function install_pkgs() {
 
 sleep 6s
 
-
-
 PKGS=(
 'autojump'
 'breeze-hacked-cursor-theme'
@@ -205,7 +263,6 @@ PKGS=(
 'tldr'
 'trash-cli'
 'variety'
-'wine-mono'
 'gnomeExtensions.dash-to-dock'
 
 
@@ -391,13 +448,14 @@ function restart() {
 }
 
 greeting
-hostname
-update
+nix
+#hostname
+#update
 #debloat
 #install_pkgs
-install_flatpaks
+#install_flatpaks
 #extensions
 #wallpaper
-install_appearance
-configs
+#install_appearance
+#configs
 restart
