@@ -119,8 +119,11 @@ fi
 function nix() {
 #	sleep 5s
 	echo "This script installs some packages using Nix Package Manager"
+	echo
 	echo "Please run the following script manually to install Nix, reboot & run this script again."
+	echo
 	echo "curl --proto '=https' --tlsv1.2 -sSf -L https://install.determinate.systems/nix | sh -s -- install"
+	echo
 	echo "HAVE YOU RUN THE SCRIPT TO INSTALL NIX? [y,n]"
 	read input
 
@@ -139,7 +142,7 @@ function nix() {
 	# treat anything else as a negative response
 	else
 
-	   echo "You replied $input, Please run the following script manually to install Nix, reboot & run this script again. "
+	   echo "You replied $input, Please run the above script manually to install Nix, reboot & run this script again. "
 	   echo
 	   exit 1
 
@@ -156,7 +159,7 @@ fi
 	# was it a y or a yes?
 	elif [[ "$input" == "y" ]] || [[ "$input" == "yes" ]]; then
 
-	   echo Restarting
+	    echo Restarting
 		echo
 		echo "Restarting in 15s"
 		sleep 15s
@@ -449,10 +452,10 @@ function restart() {
 
 greeting
 nix
-#hostname
-#update
-#debloat
-#install_pkgs
+hostname
+update
+debloat
+install_pkgs
 #install_flatpaks
 #extensions
 #wallpaper
