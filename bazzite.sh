@@ -386,35 +386,23 @@ function configs() {
 	cd $HOME/
 	mkdir .icons
 	cd $HOME/Bazzite/
-# TEST
-	sudo cp -r kora/kora* $HOME/.icons/
-	sudo cp -r kora/kora-light* $HOME/.icons/
-	sudo cp -r kora/kora-light-panel* $HOME/.icons/
-	sudo cp -r kora/kora-pgrey* $HOME/.icons/
-	sudo cp -r flat-remix/Flat-Remix* $HOME/.icons/ 
-	sudo cp -r flat-remix-gtk/themes/Flat-Remix* $HOME/.icons/
-#	sudo rm -rf ~/flat-remix flat-remix-gtk
-# TEST
-#	sudo mv kora/kora $HOME/.icons/
-#	sudo mv kora/kora-light $HOME/.icons/
-#	sudo mv kora/kora-light-panel $HOME/.icons/
-#	sudo mv kora/kora-pgrey $HOME/.icons/
-
-#	sudo mv flat-remix/Flat-Remix* $HOME/.icons/ 
-#	sudo mv flat-remix-gtk/themes/Flat-Remix* $HOME/.icons/
-#	sudo rm -rf ~/flat-remix flat-remix-gtk
-#	gsettings set org.gnome.desktop.interface gtk-theme "Flat-Remix-GTK-Blue-Dark"
+	sudo mv kora/kora/ $HOME/.icons/
+	sudo mv kora/kora-light/ $HOME/.icons/
+	sudo mv kora/kora-light-panel/ $HOME/.icons/
+	sudo mv kora/kora-pgrey/ $HOME/.icons/
+	echo
+	sudo mv flat-remix/Flat-Remix* $HOME/.icons/ 
+	sudo mv flat-remix-gtk/themes/Flat-Remix* $HOME/.icons/
+	sudo mv Bibata-Modern-Classic/ $HOME/.icons/
+	echo
 	gsettings set org.gnome.desktop.interface icon-theme "kora"
 	echo
 	gsettings set org.gnome.shell favorite-apps "['io.github.zen_browser.zen.desktop', 'com.brave.Browser.desktop', 'org.gnome.Nautilus.desktop', 'org.wezfurlong.wezterm.desktop', 'system-update.desktop', 'com.simplenote.Simplenote.desktop', 'org.gnome.Boxes.desktop', 'com.vscodium.codium.desktop']"
-#	gsettings set org.gnome.shell favorite-apps "['brave-browser.desktop', 'firefox.desktop', 'org.gnome.Nautilus.desktop', 'terminator.desktop', 'Bazzite-sync.desktop', 'com.simplenote.Simplenote.desktop', 'virtualbox.desktop', 'com.vscodium.codium.desktop', 'onboard.desktop']"
 	gsettings set org.gnome.desktop.wm.preferences button-layout ":minimize,maximize,close"
 	gsettings set org.gnome.desktop.interface clock-format '12h'   
 	gsettings set org.gnome.desktop.interface cursor-theme 'Bibata-Modern-Classic'
 	echo
-	#gsettings set org.fedorahosted.background-logo-extension "True"
-	#gsettings set org.fedorahosted.background-logo-extension.logo-file "/usr/share/bazzite-logos/bazzite_lightbackground.svg"
-	#gsettings set org.fedorahosted.background-logo-extension.logo-file-dark "/usr/share/bazzite-logos/bazzite_darkbackground.svg"
+
 
 	check_exit_status
 }
