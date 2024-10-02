@@ -116,64 +116,20 @@ fi
 	check_exit_status
 }
 
+# Installing Nix
 function nix() {
-#	sleep 5s
-	echo "This script installs some packages using Nix Package Manager"
+if command -v nix >&2; then
+	echo Nix is installed, moving on.
+else
+	echo Nix is not installed
 	echo
-	echo "Please run the following script manually to install Nix, reboot & run this script again."
+	curl --proto '=https' --tlsv1.2 -sSf -L https://install.determinate.systems/nix | sh -s -- install
 	echo
-	echo "curl --proto '=https' --tlsv1.2 -sSf -L https://install.determinate.systems/nix | sh -s -- install"
+	echo Restarting in 15 seconds. Run this script again after restart.
 	echo
-	echo "HAVE YOU RUN THE SCRIPT TO INSTALL NIX? [y,n]"
-	read input
-
-	# did we get an input value?
-	if [ "$input" == "" ]; then
-
-	   echo "Nothing was entered by the user"
-
-	# was it a y or a yes?
-	elif [[ "$input" == "y" ]] || [[ "$input" == "yes" ]]; then
-
-	   echo "You replied $input, you have run the script to install Nix"
-	   echo
-	   sleep 3s
-
-	# treat anything else as a negative response
-	else
-
-	   echo "You replied $input, Please run the above script manually to install Nix, reboot & run this script again. "
-	   echo
-	   exit 1
-
-fi
-
-	echo "DO YOU NEED TO REBOOT? [y,n]"
-	read input
-
-	# did we get an input value?
-	if [ "$input" == "" ]; then
-
-		echo "Nothing was entered by the user"
-	    
-	# was it a y or a yes?
-	elif [[ "$input" == "y" ]] || [[ "$input" == "yes" ]]; then
-
-	    echo Restarting
-		echo
-		echo "Restarting in 15s"
-		sleep 15s
-        shutdown -r now
-
-	# treat anything else as a negative response
-	else
-
-	   echo "You replied $input, So you have installed Nix manually, so we will move forward with the setup script."
-	   echo
-	   sleep 3s
-
-fi
-
+	sleep 15s
+	echo
+	shutdown -r now
 	echo
 	
 	check_exit_status
