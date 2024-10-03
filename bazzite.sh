@@ -118,18 +118,26 @@ fi
 
 # Installing Nix
 function nix() {
-if command -v nix >&2; then
-	echo Nix is installed, moving on.
+
+	echo "############################"
+	echo "|      Installing Nix.     |"
+	echo "############################"
+	echo
+	sleep 6s
+if ! [ -x "$(command -v nix)" ]; then
+	echo "Nix is installed, moving on."
 else
-	echo Nix is not installed
+	echo "Nix is not installed"
 	echo
 	curl --proto '=https' --tlsv1.2 -sSf -L https://install.determinate.systems/nix | sh -s -- install
 	echo
-	echo Restarting in 15 seconds. Run this script again after restart.
+	echo "Restarting in 15 seconds. Run this script again after restart."
 	echo
 	sleep 15s
 	echo
 	shutdown -r now
+fi
+
 	echo
 	
 	check_exit_status
