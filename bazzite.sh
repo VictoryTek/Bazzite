@@ -53,7 +53,7 @@ check_exit_status() {
 	fi
 }
 
-function greeting() {
+greeting() {
 	clear
 	
 echo "+------------------------------------------------------------------+"
@@ -117,26 +117,32 @@ fi
 }
 
 # Installing Nix
-function nix() {
+nix() {
 
-	echo "############################"
-	echo "|      Installing Nix.     |"
-	echo "############################"
+	echo "###########################"
+	echo "|      Installing Nix     |"
+	echo "###########################"
 	echo
+	echo "This script installs some packages using Nix Package Manager"
 	sleep 6s
-if ! [ -x "$(command -v nix)" ]; then
-	echo "Nix is installed, moving on."
-else
-	echo "Nix is not installed"
 	echo
-	curl --proto '=https' --tlsv1.2 -sSf -L https://install.determinate.systems/nix | sh -s -- install
-	echo
-	echo "Restarting in 15 seconds. Run this script again after restart."
-	echo
-	sleep 15s
-	echo
-	shutdown -r now
-fi
+	if ! command -v nix 2>&1 >/dev/null
+		then
+			echo "Nix is not installed"
+			echo
+			sleep 6s
+			echo
+			curl --proto '=https' --tlsv1.2 -sSf -L https://install.determinate.systems/nix | sh -s -- install
+			echo
+			echo "Restarting in 15 seconds. Run this script again after restart."
+			echo
+			sleep 15s
+			echo
+			shutdown -r now
+			echo
+		else
+			echo "Nix is installed, moving on."
+		fi
 
 	echo
 	
@@ -144,7 +150,7 @@ fi
 }
 
 # Set the Hostname
-function hostname() {
+hostname() {
 	
 	echo "############################"
 	echo "|     Set the PC Name.     |"
@@ -167,7 +173,7 @@ fi
 }
 
 # Updating 
-function update() {
+update() {
 
 	echo "###########################"
 	echo "|        Updating         |"
@@ -181,7 +187,7 @@ function update() {
 }
 
 # Removing unwanted pre-installed packages
-function debloat() {
+debloat() {
 
 	echo "#############################"
 	echo "|        Debloating         |"
@@ -206,7 +212,7 @@ done
 }
 
 # Installing Packages
-function install_pkgs() {
+install_pkgs() {
 
 	echo "###############################"
 	echo "|     Installing Packages.    |"
@@ -247,7 +253,7 @@ done
 }
 
 # Installing Appearance
-function install_appearance() {
+install_appearance() {
 	# Starship
 	curl -sS https://starship.rs/install.sh | sh
 	sleep 3s
@@ -263,7 +269,7 @@ function install_appearance() {
 }
 
 # Installing Flatpaks
-function install_flatpaks() {
+install_flatpaks() {
 	# Flatpaks
 	flatpak install --system flathub com.system76.Popsicle -y
     flatpak install --system flathub com.bitwarden.desktop -y
@@ -292,7 +298,7 @@ function install_flatpaks() {
 }
 
 # Install extensions
-function extensions() {
+extensions() {
 	#Extension-list
 	cd ~
 	git clone --recurse-submodules https://github.com/tuberry/extension-list.git && cd extension-list
@@ -314,7 +320,7 @@ function extensions() {
 }
 
 # Put the wallpaper
-function wallpaper() {
+wallpaper() {
 
 	echo "#########################################"
 	echo "|     Setting up Favorite Wallpaper.    |"
@@ -328,7 +334,7 @@ function wallpaper() {
 }
 
 #
-function configs() {
+configs() {
 	
 	echo "##################################"
 	echo "|     Setting Format changes.    |"
@@ -372,7 +378,7 @@ function configs() {
 }
 
 # finish
-function restart() {
+restart() {
 	read -p "Are You ready to restart now? (y/n) " answer 
 
             if [ "$answer" == "y" ]
@@ -406,8 +412,8 @@ greeting
 nix
 hostname
 update
-debloat
-install_pkgs
+#debloat
+#install_pkgs
 #install_flatpaks
 #extensions
 #wallpaper
