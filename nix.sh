@@ -28,9 +28,7 @@ nix () {
 			echo "Nix is installed, moving on."
 		fi
 
-	echo
-	
-	check_exit_status
+
 }
 
 nix
