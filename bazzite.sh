@@ -302,6 +302,13 @@ install_flatpaks () {
 # Install extensions
 extensions () {
 
+		#Tiling-Assistant
+	cd ~
+	git clone https://github.com/Leleat/Tiling-Assistant.git && cd Tiling-Assistant/scripts
+	chmod +x build.sh
+	./build.sh -i
+	sleep 3s
+
 	gnome-extensions enable dash-to-dock@micxgx.gmail.com
 	gnome-extensions enable tiling-assistant@leleat-on-github
 	#gnome-extensions enable window-list@gnome-shell-extensions.gcampax.github.com
@@ -368,6 +375,25 @@ configs () {
 	check_exit_status
 }
 
+#CLEAN UP
+clean-up () {
+	
+	echo "##################################"
+	echo "|     Cleaning up Left Overs.    |"
+	echo "##################################"
+	echo
+	sleep 6s
+	sudo rm -rf /usr/share/backgrounds/gnome
+	echo
+	sudo rm -rf /usr/share/backgrounds/workstation
+	echo
+	#sudo rm -rf ~/extension-list
+    echo
+	sudo rm -rf ~/Tiling-Assistant
+	echo
+	check_exit_status
+}
+
 # finish
 restart () {
 	read -p "Are You ready to restart now? (y/n) " answer 
@@ -406,8 +432,9 @@ update
 debloat
 install_pkgs
 install_flatpaks
-#extensions
-#wallpaper
-#install_appearance
+extensions
+wallpaper
+install_appearance
 configs
+clean-up
 restart
