@@ -223,11 +223,7 @@ sleep 6s
 
 PKGS=(
 'autojump'
-'bibata-cursors'
-#'breeze-hacked-cursor-theme'
 'dialog'
-'flat-remix-icon-theme'
-'kora-icon-theme'
 'meson'
 'ncdu'
 'powerline-fonts'
@@ -241,8 +237,8 @@ PKGS=(
 'tldr'
 'trash-cli'
 'variety'
-'wezterm'
 'gnomeExtensions.dash-to-dock'
+'gnome-shell-extension-tiling-assistant'
 
 
 )
@@ -255,6 +251,10 @@ done
 	# Tailscale
 	#curl -fsSL https://tailscale.com/install.sh | sh
 	#sleep 3s
+
+	# Wezterm
+	curl -LO https://github.com/wez/wezterm/releases/download/20240203-110809-5046fc22/WezTerm-20240203-110809-5046fc22-Ubuntu20.04.AppImage
+	chmod +x WezTerm-20240203-110809-5046fc22-Ubuntu20.04.AppImage
 
 }
 
@@ -277,7 +277,6 @@ install_appearance () {
 # Installing Flatpaks
 install_flatpaks () {
 	# Flatpaks
-	flatpak install --system flathub com.system76.Popsicle -y
     flatpak install --system flathub com.bitwarden.desktop -y
 	flatpak install --system flathub com.brave.Browser -y
 	flatpak install --system flathub org.gnome.Boxes -y
@@ -302,23 +301,12 @@ install_flatpaks () {
 
 # Install extensions
 extensions () {
-	#Extension-list
-	cd ~
-	git clone --recurse-submodules https://github.com/tuberry/extension-list.git && cd extension-list
-	meson setup build && meson install -C build
-	sleep 3s
 
-	#Tray-Icons-Reloaded
-	cd ~
-	git clone https://github.com/MartinPL/Tray-Icons-Reloaded.git
-	mv $HOME/Tray-Icons-Reloaded ~/.local/share/gnome-shell/extensions/trayIconsReloaded@selfmade.pl
-	sleep 3s
-
-	#Gnome 4x Overview UI Tune
-	cd ~
-	git clone https://github.com/axxapy/gnome-ui-tune.git
-	mv $HOME/gnome-ui-tune ~/.local/share/gnome-shell/extensions/gnome-ui-tune@itstime.tech
-	sleep 3s
+	gnome-extensions enable dash-to-dock@micxgx.gmail.com
+	gnome-extensions enable tiling-assistant@leleat-on-github
+	#gnome-extensions enable window-list@gnome-shell-extensions.gcampax.github.com
+	#gnome-extensions enable sound-output-device-chooser@kgshank.net
+	gnome-extensions disable logomenu@aryan_k
 
 }
 
@@ -364,13 +352,13 @@ configs () {
 	sudo mv kora/kora-light-panel/ $HOME/.icons/
 	sudo mv kora/kora-pgrey/ $HOME/.icons/
 	echo
-	sudo mv flat-remix/Flat-Remix* $HOME/.icons/ 
-	sudo mv flat-remix-gtk/themes/Flat-Remix* $HOME/.icons/
+	#sudo mv flat-remix/Flat-Remix* $HOME/.icons/ 
+	#sudo mv flat-remix-gtk/themes/Flat-Remix* $HOME/.icons/
 	sudo mv Bibata-Modern-Classic/ $HOME/.icons/
 	echo
 	gsettings set org.gnome.desktop.interface icon-theme "kora"
 	echo
-	gsettings set org.gnome.shell favorite-apps "['io.github.zen_browser.zen.desktop', 'com.brave.Browser.desktop', 'org.gnome.Nautilus.desktop', 'org.wezfurlong.wezterm.desktop', 'system-update.desktop', 'com.simplenote.Simplenote.desktop', 'org.gnome.Boxes.desktop', 'com.vscodium.codium.desktop']"
+	gsettings set org.gnome.shell favorite-apps "['io.github.zen_browser.zen.desktop', 'com.brave.Browser.desktop', 'org.gnome.Nautilus.desktop', 'org.wezfurlong.wezterm.desktop', 'wezterm.desktop', 'system-update.desktop', 'com.simplenote.Simplenote.desktop', 'org.gnome.Boxes.desktop', 'com.vscodium.codium.desktop']"
 	gsettings set org.gnome.desktop.wm.preferences button-layout ":minimize,maximize,close"
 	gsettings set org.gnome.desktop.interface clock-format '12h'   
 	gsettings set org.gnome.desktop.interface cursor-theme 'Bibata-Modern-Classic'
