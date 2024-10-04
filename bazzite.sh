@@ -181,7 +181,7 @@ update () {
 	echo
 	sleep 6s
 	echo	
-	topgrade;
+	topgrade -y;
 	echo
 	check_exit_status
 }
