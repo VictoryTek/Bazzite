@@ -181,7 +181,7 @@ update () {
 	echo
 	sleep 6s
 	echo	
-	ujust upgrade;
+	topgrade;
 	echo
 	check_exit_status
 }
@@ -223,19 +223,25 @@ sleep 6s
 
 PKGS=(
 'autojump'
-'breeze-hacked-cursor-theme'
+'bibata-cursors'
+#'breeze-hacked-cursor-theme'
 'dialog'
+'flat-remix-icon-theme'
+'kora-icon-theme'
 'meson'
 'ncdu'
 'powerline-fonts'
 'progress'
 'snapper'
+'starship'
 'swtpm'
+'tailscale'
 'terminus_font'
 'timeshift'
 'tldr'
 'trash-cli'
 'variety'
+'wezterm'
 'gnomeExtensions.dash-to-dock'
 
 
@@ -247,16 +253,16 @@ for PKG in "${PKGS[@]}"; do
 done
 
 	# Tailscale
-	curl -fsSL https://tailscale.com/install.sh | sh
-	sleep 3s
+	#curl -fsSL https://tailscale.com/install.sh | sh
+	#sleep 3s
 
 }
 
 # Installing Appearance
 install_appearance () {
 	# Starship
-	curl -sS https://starship.rs/install.sh | sh
-	sleep 3s
+	#curl -sS https://starship.rs/install.sh | sh
+	#sleep 3s
 
 	# Icons & Cursor
 	cd $HOME/Bazzite/
@@ -273,10 +279,8 @@ install_flatpaks () {
 	# Flatpaks
 	flatpak install --system flathub com.system76.Popsicle -y
     flatpak install --system flathub com.bitwarden.desktop -y
-	#flatpak install --system flathub com.usebottles.bottles -y
 	flatpak install --system flathub com.brave.Browser -y
-	#flatpak install --system flathub org.gnome.Boxes -y
-	#flatpak install --system flathub nl.hjdskes.gcolor3 -y
+	flatpak install --system flathub org.gnome.Boxes -y
 	flatpak install --system flathub io.github.shiftey.Desktop -y
 	flatpak install --system flathub com.discordapp.Discord -y
 	flatpak install --system flathub org.prismlauncher.PrismLauncher -y
@@ -284,14 +288,13 @@ install_flatpaks () {
 	#flatpak install --system flathub net.nokyan.Resources -y
     flatpak install --system flathub com.vscodium.codium -y
 	flatpak install --system flathub dev.deedles.Trayscale -y
-	#flatpak install --system flathub com.mattjakeman.ExtensionManager -y
 	flatpak install --system flathub io.github.celluloid_player.Celluloid -y
 	flatpak install --system flathub ca.desrt.dconf-editor -y
 	flatpak install --system flathub org.kde.filelight -y
 	flatpak install --system flathub org.gimp.GIMP -y
 	flatpak install --system flathub org.kde.gwenview -y
 	flatpak install --system flathub org.freedesktop.Piper -y
-	flatpak install --system flathub org.wezfurlong.wezterm -y
+	#flatpak install --system flathub org.wezfurlong.wezterm -y
 	flatpak install --system flathub io.github.zen_browser.zen -y
 	sleep 3s
 
@@ -328,7 +331,7 @@ wallpaper () {
 	echo
 	sleep 6s
 	cd ~/
-    git clone https://github.com/VictoryTek/Wallpaper.git
+    git clone https://github.com/VictoryTek/wallpaper.git
 
 	check_exit_status
 }
@@ -412,11 +415,11 @@ greeting
 npm
 hostname
 update
-#debloat
-#install_pkgs
-#install_flatpaks
+debloat
+install_pkgs
+install_flatpaks
 #extensions
 #wallpaper
 #install_appearance
-#configs
+configs
 restart
