@@ -53,7 +53,7 @@ check_exit_status() {
 	fi
 }
 
-greeting() {
+greeting () {
 	clear
 	
 echo "+------------------------------------------------------------------+"
@@ -117,7 +117,7 @@ fi
 }
 
 # Installing Nix
-nix() {
+npm () {
 
 	echo "###########################"
 	echo "|      Installing Nix     |"
@@ -150,7 +150,7 @@ nix() {
 }
 
 # Set the Hostname
-hostname() {
+hostname () {
 	
 	echo "############################"
 	echo "|     Set the PC Name.     |"
@@ -173,7 +173,7 @@ fi
 }
 
 # Updating 
-update() {
+update () {
 
 	echo "###########################"
 	echo "|        Updating         |"
@@ -187,7 +187,7 @@ update() {
 }
 
 # Removing unwanted pre-installed packages
-debloat() {
+debloat () {
 
 	echo "#############################"
 	echo "|        Debloating         |"
@@ -212,7 +212,7 @@ done
 }
 
 # Installing Packages
-install_pkgs() {
+install_pkgs () {
 
 	echo "###############################"
 	echo "|     Installing Packages.    |"
@@ -253,7 +253,7 @@ done
 }
 
 # Installing Appearance
-install_appearance() {
+install_appearance () {
 	# Starship
 	curl -sS https://starship.rs/install.sh | sh
 	sleep 3s
@@ -269,7 +269,7 @@ install_appearance() {
 }
 
 # Installing Flatpaks
-install_flatpaks() {
+install_flatpaks () {
 	# Flatpaks
 	flatpak install --system flathub com.system76.Popsicle -y
     flatpak install --system flathub com.bitwarden.desktop -y
@@ -298,7 +298,7 @@ install_flatpaks() {
 }
 
 # Install extensions
-extensions() {
+extensions () {
 	#Extension-list
 	cd ~
 	git clone --recurse-submodules https://github.com/tuberry/extension-list.git && cd extension-list
@@ -320,7 +320,7 @@ extensions() {
 }
 
 # Put the wallpaper
-wallpaper() {
+wallpaper () {
 
 	echo "#########################################"
 	echo "|     Setting up Favorite Wallpaper.    |"
@@ -334,7 +334,7 @@ wallpaper() {
 }
 
 #
-configs() {
+configs () {
 	
 	echo "##################################"
 	echo "|     Setting Format changes.    |"
@@ -378,7 +378,7 @@ configs() {
 }
 
 # finish
-restart() {
+restart () {
 	read -p "Are You ready to restart now? (y/n) " answer 
 
             if [ "$answer" == "y" ]
@@ -409,7 +409,7 @@ restart() {
 }
 
 greeting
-nix
+npm
 hostname
 update
 #debloat
