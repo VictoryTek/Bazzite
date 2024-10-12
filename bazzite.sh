@@ -56,10 +56,10 @@ check_exit_status() {
 greeting () {
 	clear
 	
-echo "+------------------------------------------------------------------+"
-echo "|---------    Hello, $USER. Let's setup Victory-Edition.  ---------|"
-echo "+------------------------------------------------------------------+"
-echo -e "--------------------         Bazzite         --------------------"
+echo    "+---------------------------------------------------------------+"
+echo    "|-------    Hello, $USER. Let's setup Victory-Edition.  --------|"
+echo    "+---------------------------------------------------------------+"
+echo -e "-------------------         Bazzite         ---------------------"
 echo -e "-----------------------------------------------------------------"
 echo -e "   ____    ____  __                                              "
 echo -e "   \   \  /   / |__| ____ ________    ____    _______ ___  ___   "
@@ -226,6 +226,7 @@ PKGS=(
 'dialog'
 'meson'
 'ncdu'
+'nerdfonts'
 'powerline-fonts'
 'progress'
 'snapper'
@@ -238,7 +239,6 @@ PKGS=(
 'trash-cli'
 'variety'
 'gnomeExtensions.dash-to-dock'
-'gnome-shell-extension-tiling-assistant'
 
 
 )
@@ -271,6 +271,12 @@ install_appearance () {
 	git clone https://github.com/bikass/kora.git
 	wget https://github.com/ful1e5/Bibata_Cursor/releases/download/v2.0.7/Bibata-Modern-Classic.tar.xz
 	tar -xvf Bibata-Modern-Classic.tar.xz
+	wget https://github.com/ryanoasis/nerd-fonts/releases/download/v3.2.1/Meslo.tar.xz
+	tar -xvf Meslo.tar.xz
+	rm -rf Meslo/LICENSE.txt
+	rm -rf Meslo/README.md
+	cp Meslo/* ~/.local/share/fonts
+	fc-cache -vf
 	sleep 3s
 }
 
@@ -287,7 +293,7 @@ install_flatpaks () {
 	#flatpak install --system flathub net.nokyan.Resources -y
     flatpak install --system flathub com.vscodium.codium -y
 	flatpak install --system flathub dev.deedles.Trayscale -y
-	flatpak install --system flathub io.github.celluloid_player.Celluloid -y
+	#flatpak install --system flathub io.github.celluloid_player.Celluloid -y
 	flatpak install --system flathub ca.desrt.dconf-editor -y
 	flatpak install --system flathub org.kde.filelight -y
 	flatpak install --system flathub org.gimp.GIMP -y
@@ -303,14 +309,16 @@ install_flatpaks () {
 extensions () {
 
 		#Tiling-Assistant
-	cd ~
-	git clone https://github.com/Leleat/Tiling-Assistant.git && cd Tiling-Assistant/scripts
-	chmod +x build.sh
-	./build.sh -i
-	sleep 3s
+#	cd ~
+#	wget https://github.com/Leleat/Tiling-Assistant/releases/download/v48/tiling-assistant@leleat-on-github.shell-extension.zip
+#	unzip unzip tiling-assistant\@leleat-on-github.shell-extension.zip -d Tiling-Assistant
+#	cd Tiling-Assistant/scripts
+#	chmod +x build.sh
+#	./build.sh -i
+#	sleep 3s
 
 	gnome-extensions enable dash-to-dock@micxgx.gmail.com
-	gnome-extensions enable tiling-assistant@leleat-on-github
+#	gnome-extensions enable tiling-assistant@leleat-on-github
 	#gnome-extensions enable window-list@gnome-shell-extensions.gcampax.github.com
 	#gnome-extensions enable sound-output-device-chooser@kgshank.net
 	gnome-extensions disable logomenu@aryan_k
