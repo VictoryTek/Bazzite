@@ -248,10 +248,6 @@ for PKG in "${PKGS[@]}"; do
     nix-env -f "<nixpkgs>" -iA "$PKG"
 done
 
-	# Tailscale
-	#curl -fsSL https://tailscale.com/install.sh | sh
-	#sleep 3s
-
 	# Wezterm
 	curl -LO https://github.com/wez/wezterm/releases/download/20240203-110809-5046fc22/WezTerm-20240203-110809-5046fc22-Ubuntu20.04.AppImage
 	chmod +x WezTerm-20240203-110809-5046fc22-Ubuntu20.04.AppImage
@@ -272,9 +268,11 @@ install_appearance () {
 	wget https://github.com/ful1e5/Bibata_Cursor/releases/download/v2.0.7/Bibata-Modern-Classic.tar.xz
 	tar -xvf Bibata-Modern-Classic.tar.xz
 	wget https://github.com/ryanoasis/nerd-fonts/releases/download/v3.2.1/Meslo.tar.xz
-	tar -xvf Meslo.tar.xz
+	mkdir Meslo
+	tar -xvf Meslo.tar.xz -C Meslo
 	rm -rf Meslo/LICENSE.txt
 	rm -rf Meslo/README.md
+	mkdir ~/.local/share/fonts
 	cp Meslo/* ~/.local/share/fonts
 	fc-cache -vf
 	sleep 3s
@@ -293,13 +291,9 @@ install_flatpaks () {
 	#flatpak install --system flathub net.nokyan.Resources -y
     flatpak install --system flathub com.vscodium.codium -y
 	flatpak install --system flathub dev.deedles.Trayscale -y
-	#flatpak install --system flathub io.github.celluloid_player.Celluloid -y
 	flatpak install --system flathub ca.desrt.dconf-editor -y
-	flatpak install --system flathub org.kde.filelight -y
 	flatpak install --system flathub org.gimp.GIMP -y
-	flatpak install --system flathub org.kde.gwenview -y
 	flatpak install --system flathub org.freedesktop.Piper -y
-	#flatpak install --system flathub org.wezfurlong.wezterm -y
 	flatpak install --system flathub io.github.zen_browser.zen -y
 	sleep 3s
 
