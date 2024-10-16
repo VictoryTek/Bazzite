@@ -281,7 +281,7 @@ install_appearance () {
 # Installing Flatpaks
 install_flatpaks () {
 	# Flatpaks
-        flatpak install --system flathub com.bitwarden.desktop -y
+    flatpak install --system flathub com.bitwarden.desktop -y
 	flatpak install --system flathub com.brave.Browser -y
 	flatpak install --system flathub org.gnome.Boxes -y
 	flatpak install --system flathub io.github.shiftey.Desktop -y
@@ -289,8 +289,8 @@ install_flatpaks () {
 	flatpak install --system flathub org.prismlauncher.PrismLauncher -y
 	flatpak install --system flathub com.simplenote.Simplenote -y
 	#flatpak install --system flathub net.nokyan.Resources -y
-        flatpak install --ayatwm flathub com.rustdesk.RustDesk -y
-        flatpak install --system flathub com.vscodium.codium -y
+	flatpak install --ayatwm flathub com.rustdesk.RustDesk -y
+    flatpak install --system flathub com.vscodium.codium -y
 	flatpak install --system flathub dev.deedles.Trayscale -y
 	flatpak install --system flathub ca.desrt.dconf-editor -y
 	flatpak install --system flathub org.gimp.GIMP -y
@@ -298,6 +298,15 @@ install_flatpaks () {
 	flatpak install --system flathub io.github.zen_browser.zen -y
 	sleep 3s
 
+}
+
+# Install QEMU & Virt Manager
+install_virtualization () {
+
+	echo
+	ujust setup-virtualization
+	echo
+	
 }
 
 # Install extensions
@@ -350,6 +359,9 @@ configs () {
     mv $HOME/.config/bashrc $HOME/.config/.bashrc
     mv $HOME/.config/.bashrc $HOME
     echo
+	mv $HOME/.config/wezterm.lua $HOME/.config/.wezterm.lua
+    mv $HOME/.config/.wezterm.lua $HOME
+	echo
 	# create a face icon
     mv $HOME/.config/face $HOME/.config/.face
     mv $HOME/.config/.face $HOME
@@ -435,6 +447,7 @@ update
 debloat
 install_pkgs
 install_flatpaks
+install_virtualization
 extensions
 wallpaper
 install_appearance
