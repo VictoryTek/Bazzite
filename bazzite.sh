@@ -256,9 +256,11 @@ done
 
 # Installing Appearance
 install_appearance () {
-	# Starship
-	#curl -sS https://starship.rs/install.sh | sh
-	#sleep 3s
+
+	echo "###############################"
+	echo "|    Installing Appearance.   |"
+	echo "###############################"
+	echo
 
 	# Icons & Cursor
 	cd $HOME/Bazzite/
@@ -280,7 +282,12 @@ install_appearance () {
 
 # Installing Flatpaks
 install_flatpaks () {
-	# Flatpaks
+
+	echo "###############################"
+	echo "|     Installing Flatpaks.    |"
+	echo "###############################"
+	echo
+
     flatpak install --system flathub com.bitwarden.desktop -y
 	flatpak install --system flathub com.brave.Browser -y
 	flatpak install --system flathub org.gnome.Boxes -y
@@ -303,6 +310,11 @@ install_flatpaks () {
 # Install QEMU & Virt Manager
 install_virtualization () {
 
+	echo "###############################"
+	echo "|  Installing Virtualization. |"
+	echo "###############################"
+	echo
+
 	echo
 	ujust setup-virtualization
 	echo
@@ -312,14 +324,10 @@ install_virtualization () {
 # Install extensions
 extensions () {
 
-		#Tiling-Assistant
-#	cd ~
-#	wget https://github.com/Leleat/Tiling-Assistant/releases/download/v48/tiling-assistant@leleat-on-github.shell-extension.zip
-#	unzip unzip tiling-assistant\@leleat-on-github.shell-extension.zip -d Tiling-Assistant
-#	cd Tiling-Assistant/scripts
-#	chmod +x build.sh
-#	./build.sh -i
-#	sleep 3s
+	echo "###############################"
+	echo "|    Installing Extensions.   |"
+	echo "###############################"
+	echo
 
 	gnome-extensions enable dash-to-dock@micxgx.gmail.com
 #	gnome-extensions enable tiling-assistant@leleat-on-github
