@@ -116,39 +116,6 @@ fi
 	check_exit_status
 }
 
-# Installing Nix
-npm () {
-
-	echo "###########################"
-	echo "|      Installing Nix     |"
-	echo "###########################"
-	echo
-	echo "This script installs some packages using Nix Package Manager"
-	sleep 6s
-	echo
-	if ! command -v nix 2>&1 >/dev/null
-		then
-			echo "Nix is not installed"
-			echo
-			sleep 6s
-			echo
-			curl --proto '=https' --tlsv1.2 -sSf -L https://install.determinate.systems/nix | sh -s -- install
-			echo
-			echo "Restarting in 15 seconds. Run this script again after restart."
-			echo
-			sleep 15s
-			echo
-			shutdown -r now
-			echo
-		else
-			echo "Nix is installed, moving on."
-		fi
-
-	echo
-	
-	check_exit_status
-}
-
 # Set the Hostname
 hostname () {
 	
@@ -226,58 +193,38 @@ PKGS=(
 'dialog'
 'meson'
 'ncdu'
-'nerdfonts'
-'powerline-fonts'
+'pipx'
 'progress'
-'snapper'
-'starship'
 'swtpm'
-'tailscale'
-'terminus_font'
-'timeshift'
 'tldr'
 'trash-cli'
-'variety'
-'gnomeExtensions.dash-to-dock'
-
 
 )
 
 for PKG in "${PKGS[@]}"; do
     echo "INSTALLING: ${PKG}"
-    nix-env -f "<nixpkgs>" -iA "$PKG"
+    brew install "$PKG"
 done
 
 	# Wezterm
 	curl -LO https://github.com/wez/wezterm/releases/download/20240203-110809-5046fc22/WezTerm-20240203-110809-5046fc22-Ubuntu20.04.AppImage
 	chmod +x WezTerm-20240203-110809-5046fc22-Ubuntu20.04.AppImage
-
-}
-
-# Installing Appearance
-install_appearance () {
-
-	echo "###############################"
-	echo "|    Installing Appearance.   |"
-	echo "###############################"
-	echo
-
-	# Icons & Cursor
-	cd $HOME/Bazzite/
-	git clone https://github.com/daniruiz/flat-remix
-	git clone https://github.com/daniruiz/flat-remix-gtk
-	git clone https://github.com/bikass/kora.git
-	wget https://github.com/ful1e5/Bibata_Cursor/releases/download/v2.0.7/Bibata-Modern-Classic.tar.xz
-	tar -xvf Bibata-Modern-Classic.tar.xz
-	wget https://github.com/ryanoasis/nerd-fonts/releases/download/v3.2.1/Meslo.tar.xz
-	mkdir Meslo
-	tar -xvf Meslo.tar.xz -C Meslo
-	rm -rf Meslo/LICENSE.txt
-	rm -rf Meslo/README.md
-	mkdir ~/.local/share/fonts
-	cp Meslo/* ~/.local/share/fonts
-	fc-cache -vf
 	sleep 3s
+
+	# Starship
+	curl -sS https://starship.rs/install.sh | sh
+	sleep 3s
+
+	# Gnome Extension Cli
+	pipx install gnome-extensions-cli --system-site-packages 
+	sleep 3s
+
+#'gnomeExtensions.dash-to-dock'
+#'terminus_font'*
+#'snapper'*
+#'powerline-fonts'*
+#'nerdfonts'*
+
 }
 
 # Installing Flatpaks
@@ -321,7 +268,33 @@ install_virtualization () {
 	
 }
 
-# Install extensions
+# Installing Appearance
+install_appearance () {
+
+	echo "###############################"
+	echo "|    Installing Appearance.   |"
+	echo "###############################"
+	echo
+
+	# Icons & Cursor
+	cd $HOME/Bazzite/
+	git clone https://github.com/daniruiz/flat-remix
+	git clone https://github.com/daniruiz/flat-remix-gtk
+	git clone https://github.com/bikass/kora.git
+	wget https://github.com/ful1e5/Bibata_Cursor/releases/download/v2.0.7/Bibata-Modern-Classic.tar.xz
+	tar -xvf Bibata-Modern-Classic.tar.xz
+	wget https://github.com/ryanoasis/nerd-fonts/releases/download/v3.2.1/Meslo.tar.xz
+	mkdir Meslo
+	tar -xvf Meslo.tar.xz -C Meslo
+	rm -rf Meslo/LICENSE.txt
+	rm -rf Meslo/README.md
+	mkdir ~/.local/share/fonts
+	cp Meslo/* ~/.local/share/fonts
+	fc-cache -vf
+	sleep 3s
+}
+
+# Installing Extensions
 extensions () {
 
 	echo "###############################"
@@ -329,11 +302,30 @@ extensions () {
 	echo "###############################"
 	echo
 
-	gnome-extensions enable dash-to-dock@micxgx.gmail.com
-#	gnome-extensions enable tiling-assistant@leleat-on-github
-	#gnome-extensions enable window-list@gnome-shell-extensions.gcampax.github.com
-	#gnome-extensions enable sound-output-device-chooser@kgshank.net
-	gnome-extensions disable logomenu@aryan_k
+sleep 6s
+
+PKGS=(
+'azwallpaper@azwallpaper.gitlab.com'
+'dash-to-dock@micxgx.gmail.com'
+'openbar@neuromorph'
+'quick-settings-tweaks@qwreey'
+'tiling-assistant@leleat-on-github'
+
+)
+
+for PKG in "${PKGS[@]}"; do
+    echo "INSTALLING: ${PKG}"
+    gext install "$PKG"
+done	
+
+	gext enable dash-to-dock@micxgx.gmail.com
+	gext enable tiling-assistant@leleat-on-github
+	gext enable window-list@gnome-shell-extensions.gcampax.github.com
+	gext enable openbar@neuromorph
+	gext enable quick-settings-tweaks@qwreey
+	gext enable azwallpaper@azwallpaper.gitlab.com
+	echo
+	gext disable logomenu@aryan_k
 
 }
 
@@ -347,6 +339,7 @@ wallpaper () {
 	sleep 6s
 	cd ~/
     git clone https://github.com/VictoryTek/wallpaper.git
+	echo
 
 	check_exit_status
 }
@@ -449,7 +442,6 @@ restart () {
 }
 
 greeting
-npm
 hostname
 update
 debloat
