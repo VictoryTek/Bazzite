@@ -452,5 +452,5 @@ extensions
 wallpaper
 install_appearance
 configs
-clean-up
+#clean-up
 restart
