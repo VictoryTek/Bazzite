@@ -238,6 +238,7 @@ install_flatpaks () {
     flatpak install --system flathub com.bitwarden.desktop -y
 	flatpak install --system flathub com.brave.Browser -y
 	flatpak install --system flathub org.gnome.Boxes -y
+	#flatpak install --system flathub io.frama.tractor.carburetor -y
 	flatpak install --system flathub io.github.shiftey.Desktop -y
 	flatpak install --system flathub com.discordapp.Discord -y
 	flatpak install --system flathub org.prismlauncher.PrismLauncher -y
@@ -385,6 +386,7 @@ configs () {
 	gsettings set org.gnome.desktop.wm.preferences button-layout ":minimize,maximize,close"
 	gsettings set org.gnome.desktop.interface clock-format '12h'   
 	gsettings set org.gnome.desktop.interface cursor-theme 'Bibata-Modern-Classic'
+	gsettings set org.gnome.desktop.sound allow-volume-above-100-percent 'true' 
 	echo
 
 
