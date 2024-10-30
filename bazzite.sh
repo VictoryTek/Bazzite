@@ -244,7 +244,7 @@ install_flatpaks () {
 	flatpak install --system flathub org.prismlauncher.PrismLauncher -y
 	flatpak install --system flathub com.simplenote.Simplenote -y
 	#flatpak install --system flathub net.nokyan.Resources -y
-	flatpak install --ayatwm flathub com.rustdesk.RustDesk -y
+	flatpak install --system flathub com.rustdesk.RustDesk -y
     flatpak install --system flathub com.vscodium.codium -y
 	flatpak install --system flathub dev.deedles.Trayscale -y
 	flatpak install --system flathub ca.desrt.dconf-editor -y
