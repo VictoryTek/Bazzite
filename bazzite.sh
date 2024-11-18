@@ -178,6 +178,28 @@ done
 	check_exit_status
 }
 
+# Installing Xorg Packages
+install_layord () {
+
+	echo "################################"
+	echo "|   Installing Xorg Packages.  |"
+	echo "################################"
+	echo
+
+sleep 6s
+
+PKGS=(
+'gnome-session-xsession'
+'gparted'
+
+)
+
+for PKG in "${PKGS[@]}"; do
+    echo "INSTALLING: ${PKG}"
+    rpm-ostree install "$PKG"
+done
+}
+
 # Installing Packages
 install_pkgs () {
 
@@ -195,6 +217,7 @@ PKGS=(
 'ncdu'
 'pipx'
 'progress'
+'starship'
 'swtpm'
 'tldr'
 'trash-cli'
@@ -207,12 +230,13 @@ for PKG in "${PKGS[@]}"; do
 done
 
 	# Wezterm
-	curl -LO https://github.com/wez/wezterm/releases/download/20240203-110809-5046fc22/WezTerm-20240203-110809-5046fc22-Ubuntu20.04.AppImage
-	chmod +x WezTerm-20240203-110809-5046fc22-Ubuntu20.04.AppImage
+	brew install --cask wezterm
+#	curl -LO https://github.com/wez/wezterm/releases/download/20240203-110809-5046fc22/WezTerm-20240203-110809-5046fc22-Ubuntu20.04.AppImage
+#	chmod +x WezTerm-20240203-110809-5046fc22-Ubuntu20.04.AppImage
 	sleep 3s
 
 	# Starship
-	curl -sS https://starship.rs/install.sh | sh
+#	curl -sS https://starship.rs/install.sh | sh
 	sleep 3s
 
 	# Gnome Extension Cli
@@ -238,13 +262,13 @@ install_flatpaks () {
     flatpak install --system flathub com.bitwarden.desktop -y
 	flatpak install --system flathub com.brave.Browser -y
 	flatpak install --system flathub org.gnome.Boxes -y
-	#flatpak install --system flathub io.frama.tractor.carburetor -y
+	flatpak install --system flathub io.frama.tractor.carburetor -y
 	flatpak install --system flathub io.github.shiftey.Desktop -y
 	flatpak install --system flathub com.discordapp.Discord -y
 	flatpak install --system flathub org.prismlauncher.PrismLauncher -y
 	flatpak install --system flathub com.simplenote.Simplenote -y
 	#flatpak install --system flathub net.nokyan.Resources -y
-	flatpak install --system flathub com.rustdesk.RustDesk -y
+	flatpak install --ayatwm flathub com.rustdesk.RustDesk -y
     flatpak install --system flathub com.vscodium.codium -y
 	flatpak install --system flathub dev.deedles.Trayscale -y
 	flatpak install --system flathub ca.desrt.dconf-editor -y
@@ -295,41 +319,6 @@ install_appearance () {
 	sleep 3s
 }
 
-# Installing Extensions
-extensions () {
-
-	echo "###############################"
-	echo "|    Installing Extensions.   |"
-	echo "###############################"
-	echo
-
-sleep 6s
-
-PKGS=(
-'azwallpaper@azwallpaper.gitlab.com'
-'dash-to-dock@micxgx.gmail.com'
-'openbar@neuromorph'
-'quick-settings-tweaks@qwreey'
-'tiling-assistant@leleat-on-github'
-
-)
-
-for PKG in "${PKGS[@]}"; do
-    echo "INSTALLING: ${PKG}"
-    gext install "$PKG"
-done	
-
-	gext enable dash-to-dock@micxgx.gmail.com
-	gext enable tiling-assistant@leleat-on-github
-	gext enable window-list@gnome-shell-extensions.gcampax.github.com
-	gext enable openbar@neuromorph
-	gext enable quick-settings-tweaks@qwreey
-	gext enable azwallpaper@azwallpaper.gitlab.com
-	echo
-	gext disable logomenu@aryan_k
-
-}
-
 # Put the wallpaper
 wallpaper () {
 
@@ -341,54 +330,6 @@ wallpaper () {
 	cd ~/
     git clone https://github.com/VictoryTek/wallpaper.git
 	echo
-
-	check_exit_status
-}
-
-#
-configs () {
-	
-	echo "##################################"
-	echo "|     Setting Format changes.    |"
-	echo "##################################"
-	echo
-	sleep 6s
-   	echo
-    export PATH=$PATH:~/.local/bin
-    cp -r $HOME/Bazzite/configs/* $HOME/.config/
-    echo
-	# enable pre configured bashrc file
-    mv $HOME/.config/bashrc $HOME/.config/.bashrc
-    mv $HOME/.config/.bashrc $HOME
-    echo
-	mv $HOME/.config/wezterm.lua $HOME/.config/.wezterm.lua
-    mv $HOME/.config/.wezterm.lua $HOME
-	echo
-	# create a face icon
-    mv $HOME/.config/face $HOME/.config/.face
-    mv $HOME/.config/.face $HOME
-	echo
-	cd $HOME/
-	mkdir .icons
-	cd $HOME/Bazzite/
-	sudo mv kora/kora/ $HOME/.icons/
-	sudo mv kora/kora-light/ $HOME/.icons/
-	sudo mv kora/kora-light-panel/ $HOME/.icons/
-	sudo mv kora/kora-pgrey/ $HOME/.icons/
-	echo
-	#sudo mv flat-remix/Flat-Remix* $HOME/.icons/ 
-	#sudo mv flat-remix-gtk/themes/Flat-Remix* $HOME/.icons/
-	sudo mv Bibata-Modern-Classic/ $HOME/.icons/
-	echo
-	gsettings set org.gnome.desktop.interface icon-theme "kora"
-	echo
-	gsettings set org.gnome.shell favorite-apps "['io.github.zen_browser.zen.desktop', 'com.brave.Browser.desktop', 'org.gnome.Nautilus.desktop', 'org.wezfurlong.wezterm.desktop', 'wezterm.desktop', 'system-update.desktop', 'com.simplenote.Simplenote.desktop', 'org.gnome.Boxes.desktop', 'com.vscodium.codium.desktop']"
-	gsettings set org.gnome.desktop.wm.preferences button-layout ":minimize,maximize,close"
-	gsettings set org.gnome.desktop.interface clock-format '12h'   
-	gsettings set org.gnome.desktop.interface cursor-theme 'Bibata-Modern-Classic'
-	gsettings set org.gnome.desktop.sound allow-volume-above-100-percent 'true' 
-	echo
-
 
 	check_exit_status
 }
@@ -447,12 +388,10 @@ greeting
 hostname
 update
 debloat
+install_layord
 install_pkgs
 install_flatpaks
 install_virtualization
-extensions
 wallpaper
 install_appearance
-configs
-#clean-up
 restart
