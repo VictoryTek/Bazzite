@@ -11,7 +11,7 @@ Download Bazzite from https://bazzite.gg/ and put it on a USB drive with Etcher,
 ```
 git clone https://github.com/VictoryTek/Bazzite
 cd Bazzite
-chmod +x bazzite.sh
+chmod +x bazzite.sh && chmod +x finish.sh
 
 ./bazzite.sh
 
