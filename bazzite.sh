@@ -178,11 +178,27 @@ done
 	check_exit_status
 }
 
-# Installing Xorg Packages
+remove_startup_apps () {
+
+	echo "##################################"
+	echo "|  Remove Unwanted Startup Apps  |"
+	echo "##################################"
+	echo
+
+	echo
+	echo "Steam"
+	echo
+	rm -rf $HOME/.config/autostart/steam.desktop
+	echo
+
+	check_exit_status
+}
+
+# Installing Layord Packages
 install_layord () {
 
 	echo "################################"
-	echo "|   Installing Xorg Packages.  |"
+	echo "|  Installing Layord Packages  |"
 	echo "################################"
 	echo
 
@@ -198,6 +214,9 @@ for PKG in "${PKGS[@]}"; do
     echo "INSTALLING: ${PKG}"
     rpm-ostree install "$PKG"
 done
+echo
+
+	check_exit_status
 }
 
 # Installing Packages
@@ -242,6 +261,9 @@ done
 	# Gnome Extension Cli
 	pipx install gnome-extensions-cli --system-site-packages 
 	sleep 3s
+	echo
+
+	check_exit_status
 
 #'gnomeExtensions.dash-to-dock'
 #'terminus_font'*
@@ -276,6 +298,9 @@ install_flatpaks () {
 	flatpak install --system flathub org.freedesktop.Piper -y
 	flatpak install --system flathub io.github.zen_browser.zen -y
 	sleep 3s
+	echo
+
+	check_exit_status
 
 }
 
@@ -290,6 +315,8 @@ install_virtualization () {
 	echo
 	ujust setup-virtualization
 	echo
+
+	check_exit_status
 	
 }
 
@@ -317,6 +344,9 @@ install_appearance () {
 	cp Meslo/* ~/.local/share/fonts
 	fc-cache -vf
 	sleep 3s
+	echo
+
+	check_exit_status
 }
 
 # Put the wallpaper
@@ -331,25 +361,6 @@ wallpaper () {
     git clone https://github.com/VictoryTek/wallpaper.git
 	echo
 
-	check_exit_status
-}
-
-#CLEAN UP
-clean-up () {
-	
-	echo "##################################"
-	echo "|     Cleaning up Left Overs.    |"
-	echo "##################################"
-	echo
-	sleep 6s
-	sudo rm -rf /usr/share/backgrounds/gnome
-	echo
-	sudo rm -rf /usr/share/backgrounds/workstation
-	echo
-	#sudo rm -rf ~/extension-list
-    echo
-	sudo rm -rf ~/Tiling-Assistant
-	echo
 	check_exit_status
 }
 
@@ -388,6 +399,7 @@ greeting
 hostname
 update
 debloat
+remove_startup_apps
 install_layord
 install_pkgs
 install_flatpaks
