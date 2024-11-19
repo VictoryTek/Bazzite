@@ -265,13 +265,12 @@ for PKG in "${PKGS[@]}"; do
 done
 
 	# Wezterm
-	brew install --cask wezterm
-#	curl -LO https://github.com/wez/wezterm/releases/download/20240203-110809-5046fc22/WezTerm-20240203-110809-5046fc22-Ubuntu20.04.AppImage
-#	chmod +x WezTerm-20240203-110809-5046fc22-Ubuntu20.04.AppImage
+	curl -LO https://github.com/wez/wezterm/releases/download/20240203-110809-5046fc22/WezTerm-20240203-110809-5046fc22-Ubuntu20.04.AppImage
+	chmod +x WezTerm-20240203-110809-5046fc22-Ubuntu20.04.AppImage
 	sleep 3s
 
 	# Starship
-#	curl -sS https://starship.rs/install.sh | sh
+	curl -sS https://starship.rs/install.sh | sh
 	sleep 3s
 
 	# Gnome Extension Cli
