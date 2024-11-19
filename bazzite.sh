@@ -1,6 +1,6 @@
 #!/bin/bash
 # Setup my Bazzite Linux
-# Ver. 1.0
+# Ver. 1.5
 
 #####################################################################
 #  ____    ____  __                                                 #
@@ -85,6 +85,22 @@ echo -e "+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++"
 
 	
 #	sleep 5s
+	echo "To-Do List"
+	echo 
+	echo "Give this PC a Name"
+	echo "Update the system"
+	echo "Remove unwanted packages"
+	echo "Remove Unwanted Startup Apps"
+	echo "Install Layered Packages"
+	echo "Install Packages"
+	echo "Install Flatpaks"
+	echo "Install QEMU Virtualization"
+	echo "Download Favorite Wallpaper"
+	echo "Install Themeing"
+	echo
+	echo "If you dont want one of these in the list to run,"
+	echo "then edit the script and remove it."
+	echo
 	echo "ARE YOU READY TO START? [y,n]"
 	read input
 
