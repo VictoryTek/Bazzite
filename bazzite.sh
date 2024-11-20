@@ -282,6 +282,7 @@ done
 	pipx install gnome-extensions-cli --system-site-packages 
 	sleep 3s
 	echo
+ 	# Restart Gnome Shell
 	busctl --user call org.gnome.Shell /org/gnome/Shell org.gnome.Shell Eval s 'Meta.restart("Restarting…")'
 	echo
 
