@@ -275,12 +275,14 @@ done
 	sleep 3s
 
 	# Starship
-	curl -sS https://starship.rs/install.sh | sh
-	sleep 3s
+#	curl -sS https://starship.rs/install.sh | sh
+#	sleep 3s
 
 	# Gnome Extension Cli
 	pipx install gnome-extensions-cli --system-site-packages 
 	sleep 3s
+	echo
+	busctl --user call org.gnome.Shell /org/gnome/Shell org.gnome.Shell Eval s 'Meta.restart("Restarting…")'
 	echo
 
 	check_exit_status
@@ -417,7 +419,7 @@ restart () {
             then
             	
 		echo "---------------------------------------"
-		echo "----        VictoryScript          ----"
+		echo "----      VictoryScript p1         ----"
 		echo "----     has been installed!       ----"
 		echo "---------------------------------------"
 		echo
