@@ -1,6 +1,6 @@
 #!/bin/bash
 # Setup my Bazzite Linux
-# Ver. 1.5
+# Ver. 1.0
 
 #####################################################################
 #  ____    ____  __                                                 #
@@ -264,7 +264,12 @@ for PKG in "${PKGS[@]}"; do
     brew install "$PKG"
 done
 
+	# Tailscale
+	ujust enable-tailscale
+	sleep 3s
+	
 	# Wezterm
+#	brew install --cask wezterm
 	curl -LO https://github.com/wez/wezterm/releases/download/20240203-110809-5046fc22/WezTerm-20240203-110809-5046fc22-Ubuntu20.04.AppImage
 	chmod +x WezTerm-20240203-110809-5046fc22-Ubuntu20.04.AppImage
 	sleep 3s
@@ -333,6 +338,31 @@ install_virtualization () {
 
 	check_exit_status
 	
+}
+
+# Installing Extensions
+install_extensions () {
+
+	echo "###############################"
+	echo "|    Installing Extensions.   |"
+	echo "###############################"
+	echo
+
+sleep 6s
+
+PKGS=(
+'azwallpaper@azwallpaper.gitlab.com'
+'dash-to-dock@micxgx.gmail.com'
+'openbar@neuromorph'
+'quick-settings-tweaks@qwreey'
+'tiling-assistant@leleat-on-github'
+
+)
+
+for PKG in "${PKGS[@]}"; do
+    echo "INSTALLING: ${PKG}"
+    gext install "$PKG"
+done	
 }
 
 # Installing Appearance
@@ -419,6 +449,7 @@ install_layord
 install_pkgs
 install_flatpaks
 install_virtualization
+install_extensionss
 wallpaper
 install_appearance
 restart
