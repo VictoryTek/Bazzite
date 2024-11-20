@@ -130,31 +130,6 @@ update () {
 	check_exit_status
 }
 
-# Installing Extensions
-install_extensions () {
-
-	echo "###############################"
-	echo "|    Installing Extensions.   |"
-	echo "###############################"
-	echo
-
-sleep 6s
-
-PKGS=(
-'azwallpaper@azwallpaper.gitlab.com'
-'dash-to-dock@micxgx.gmail.com'
-'openbar@neuromorph'
-'quick-settings-tweaks@qwreey'
-'tiling-assistant@leleat-on-github'
-
-)
-
-for PKG in "${PKGS[@]}"; do
-    echo "INSTALLING: ${PKG}"
-    gext install "$PKG"
-done	
-}
-
 enable_extensions () {
 
 	echo "###############################"
@@ -164,14 +139,14 @@ enable_extensions () {
 
 sleep 6s
 
-	gext enable dash-to-dock@micxgx.gmail.com
-	gext enable tiling-assistant@leleat-on-github
-	gext enable window-list@gnome-shell-extensions.gcampax.github.com
-	gext enable openbar@neuromorph
-	gext enable quick-settings-tweaks@qwreey
-	gext enable azwallpaper@azwallpaper.gitlab.com
+	gnome-extensions enable dash-to-dock@micxgx.gmail.com
+	gnome-extensions enable tiling-assistant@leleat-on-github
+	gnome-extensions enable window-list@gnome-shell-extensions.gcampax.github.com
+	gnome-extensions enable openbar@neuromorph
+	gnome-extensions enable quick-settings-tweaks@qwreey
+	gnome-extensions enable azwallpaper@azwallpaper.gitlab.com
 	echo
-	gext disable logomenu@aryan_k
+	gnome-extensions disable logomenu@aryan_k
 
 }
 
@@ -256,7 +231,6 @@ restart () {
 
 greeting
 update
-install_extensions
 enable_extensions
-configs
+#configs
 restart
