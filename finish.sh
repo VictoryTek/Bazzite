@@ -143,7 +143,6 @@ sleep 6s
 	gnome-extensions enable tiling-assistant@leleat-on-github
 	gnome-extensions enable window-list@gnome-shell-extensions.gcampax.github.com
 	gnome-extensions enable openbar@neuromorph
-	gnome-extensions enable quick-settings-tweaks@qwreey
 	gnome-extensions enable azwallpaper@azwallpaper.gitlab.com
 	echo
 	gnome-extensions disable logomenu@aryan_k
