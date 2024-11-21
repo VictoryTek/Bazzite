@@ -357,7 +357,6 @@ PKGS=(
 'azwallpaper@azwallpaper.gitlab.com'
 'dash-to-dock@micxgx.gmail.com'
 'openbar@neuromorph'
-'quick-settings-tweaks@qwreey'
 'tiling-assistant@leleat-on-github'
 
 )
