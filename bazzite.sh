@@ -316,7 +316,7 @@ install_flatpaks () {
 	flatpak install --system flathub com.rustdesk.RustDesk -y
     flatpak install --system flathub com.vscodium.codium -y
 	flatpak install --system flathub dev.deedles.Trayscale -y
-	flatpak install --system flathub ca.desrt.dconf-editor -y
+	#flatpak install --system flathub ca.desrt.dconf-editor -y
 	flatpak install --system flathub org.gimp.GIMP -y
 	flatpak install --system flathub org.freedesktop.Piper -y
 	flatpak install --system flathub io.github.zen_browser.zen -y
