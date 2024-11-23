@@ -68,13 +68,13 @@ echo -e "     \      /  |   ||  |_   |  |   |   |_|  ||  | |__| \   /     "
 echo -e "      \____/   |___||____|  |__|    \_____ / |__|       |_|      "
 echo -e "                                                                 "
 echo -e "-----------------------------------------------------------------"
-echo -e "    █████╗     █████╗  ██████╗ ██████╗██████╗ ██████╗  █████╗    "
-echo -e "  ██╔════██╗ ██╔════██╗██╔══██╗  ██╔═╝██╔══██╗  ██╔═╝██╔════██╗  "
-echo -e "   ████╗    ██╔╝       ██║  ██║  ██║  ██║  ██║  ██║   ████╗      "
-echo -e "      ████╗ ██║        ██████╔╝  ██║  ██████╔╝  ██║      ████╗   "
-echo -e "  ██╗    ██╗ ██╗    ██║██║  ██║  ██║  ██╔═══╝   ██║  ██╗    ██╗  "
-echo -e "    █████╔═╝   █████╔═╝██║  ██║██████╗██║       ██║    █████╔═╝  "
-echo -e "    ╚════╝     ╚════╝  ╚═╝  ╚═╝╚═════╝╚═╝       ╚═╝    ╚════╝    "
+echo -e "       ██████╗  █████╗ ██████╗██████╗██████╗██████╗██████╗       "
+echo -e "       ██╔══██╗██╔══██╗╚═══██║╚═══██║  ██╔═╝  ██╔═╝██╔═══╝       "
+echo -e "       ██████╔╝██║  ██║  ███╔╝  ███╔╝  ██║    ██║  ██████╗       "
+echo -e "       ██╔══██╗███████║ ███╔╝  ███╔╝   ██║    ██║  ██╔═══╝       "
+echo -e "       ██║  ██║██║  ██║██╔═╝  ██╔═╝    ██║    ██║  ██║           "
+echo -e "       ██████╔╝██║  ██║██████╗██████╗██████╗  ██║  ██████╗       "
+echo -e "       ╚═════╝ ╚═╝  ╚═╝╚═════╝╚═════╝╚═════╝  ╚═╝  ╚═════╝       "
 echo -e "-----------------------------------------------------------------"
 echo -e " DO NOT JUST RUN THIS. EXAMINE AND JUDGE. RUN AT YOUR OWN RISK.  "
 echo -e "---------------------------------------------------------------- "
@@ -282,7 +282,6 @@ done
 	pipx install gnome-extensions-cli --system-site-packages 
 	sleep 3s
 	echo
- 	# Restart Gnome Shell
 	busctl --user call org.gnome.Shell /org/gnome/Shell org.gnome.Shell Eval s 'Meta.restart("Restarting…")'
 	echo
 
@@ -316,7 +315,7 @@ install_flatpaks () {
 	flatpak install --system flathub com.rustdesk.RustDesk -y
     flatpak install --system flathub com.vscodium.codium -y
 	flatpak install --system flathub dev.deedles.Trayscale -y
-	#flatpak install --system flathub ca.desrt.dconf-editor -y
+	flatpak install --system flathub ca.desrt.dconf-editor -y
 	flatpak install --system flathub org.gimp.GIMP -y
 	flatpak install --system flathub org.freedesktop.Piper -y
 	flatpak install --system flathub io.github.zen_browser.zen -y
@@ -451,7 +450,6 @@ install_layord
 install_pkgs
 install_flatpaks
 install_virtualization
-install_extensions
 wallpaper
 install_appearance
 restart
